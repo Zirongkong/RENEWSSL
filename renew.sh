@@ -1,15 +1,16 @@
 #!/bin/bash
 
-# ÁĞ³ö/root/cert/Ä¿Â¼ÏÂËùÓĞÒÔ .cer ½áÎ²µÄÎÄ¼ş£¬²¢ÌáÈ¡ÎÄ¼şÃûÖĞµÄÓòÃû²¿·Ö
+# åˆ—å‡º/root/cert/ç›®å½•ä¸‹æ‰€æœ‰ä»¥ .cer ç»“å°¾çš„æ–‡ä»¶ï¼Œå¹¶æå–æ–‡ä»¶åä¸­çš„åŸŸåéƒ¨åˆ†
 filename=$(ls -1 /root/cert/*.cer | grep -Eo '[a-zA-Z0-9.-]+\.cer$' | awk '{print length($0), $0}' | sort -n | tail -1 | awk '{print $2}' | sed 's/\.cer$//')
 domain=$(basename "$filename")
 
-echo "ÌáÈ¡³öµÄÓòÃûÊÇ: $domain"
+echo "æå–å‡ºçš„åŸŸåæ˜¯: $domain"
 
-# Ö´ĞĞ issue ÃüÁî
-echo "Ö´ĞĞ issue ÃüÁî..."
+# æ‰§è¡Œ issue å‘½ä»¤
+echo "æ‰§è¡Œ issue å‘½ä»¤..."
 ~/.acme.sh/acme.sh --issue -d $domain --standalone --force
 
-# Ö´ĞĞ installcert ÃüÁî
-echo "Ö´ĞĞ installcert ÃüÁî..."
+# æ‰§è¡Œ installcert å‘½ä»¤
+echo "æ‰§è¡Œ installcert å‘½ä»¤..."
 ~/.acme.sh/acme.sh --installcert -d $domain --key-file /root/cert/${domain}.key --fullchain-file /root/cert/${domain}.cer
+
