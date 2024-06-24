@@ -8,7 +8,7 @@ echo "提取出的域名是: $domain"
 
 # 执行 issue 命令
 echo "执行 issue 命令..."
-~/.acme.sh/acme.sh --issue -d $domain --standalone --force
+~/.acme.sh/acme.sh --issue --dns dns_cf -d $domain --standalone --force
 
 # 执行 installcert 命令
 echo "执行 installcert 命令..."
